@@ -1,0 +1,5 @@
+.venv/
+.qmk_firmware/
+.artifacts/
+__pycache__/
+.DS_Store
