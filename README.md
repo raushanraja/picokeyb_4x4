@@ -7,9 +7,21 @@ QMK firmware for a hand-wired 16-key matrix on a Raspberry Pi Pico.
 ```text
 1       2       3       4
 5       6       Up      Delete
-Z       Left    Down    Right
-GUI     Ctrl    Esc     Enter
+M       Left    Down    Right
+Fn      Ctrl    Esc     Enter
 ```
+
+### Profiles and layers
+
+The keyboard starts in M1 for the last-selected OS profile. Press `M` to
+toggle between M1 and M2. Hold `Fn` for the momentary Fn layer, then press
+`Ctrl + M` to switch between Windows and Linux. The OS selection is stored in
+EEPROM and survives unplugging and rebooting; the M1/M2 selection resets to M1
+on boot.
+
+The four profile layers initially contain the same keymap. The Fn layer is
+transparent apart from the profile shortcut and normal Ctrl, leaving room for
+additional Fn actions later.
 
 ## Matrix wiring
 

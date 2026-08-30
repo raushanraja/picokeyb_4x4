@@ -13,13 +13,12 @@ GNU General Public License for more details.
 */
 
 #include QMK_KEYBOARD_H
+#include "../../profile_switching.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    // The physical matrix wiring is transposed relative to the logical layout.
-    [0] = LAYOUT_ortho_4x4(
-        KC_1,    KC_5,    KC_Z,    KC_LGUI,
-        KC_2,    KC_6,    KC_LEFT, KC_LCTL,
-        KC_3,    KC_UP,   KC_DOWN, KC_ESC,
-        KC_4,    KC_DEL,  KC_RGHT, KC_ENT
-    )
+    [L_WIN_M1] = PICO_4X4_PROFILE_LAYER,
+    [L_WIN_M2] = PICO_4X4_PROFILE_LAYER,
+    [L_LINUX_M1] = PICO_4X4_PROFILE_LAYER,
+    [L_LINUX_M2] = PICO_4X4_PROFILE_LAYER,
+    [L_FN] = PICO_4X4_FN_LAYER,
 };

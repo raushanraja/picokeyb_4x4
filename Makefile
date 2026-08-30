@@ -30,6 +30,7 @@ test: ## Run project-level tests
 	@bash $(ROOT)/tests/test_scripts.sh
 	@bash $(ROOT)/tests/test_uploader.sh
 	@bash $(ROOT)/tests/test_makefile.sh
+	@bash $(ROOT)/tests/test_profile_switching.sh
 
 lint: setup ## Run QMK metadata lint for the base keyboard
 	@mkdir -p "$(QMK_HOME)/keyboards/pico_4x4"

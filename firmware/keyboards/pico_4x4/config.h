@@ -31,6 +31,9 @@ GNU General Public License for more details.
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 4
 
+// VIA exposes the four profile layers plus the momentary Fn layer.
+#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+
 #define USB_POLLING_INTERVAL_MS 1
 
 // Double-tap reset enters the Pico UF2 bootloader after the first flash.
