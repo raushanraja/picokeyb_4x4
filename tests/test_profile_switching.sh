@@ -32,8 +32,8 @@ done
 
 grep -Fq 'KC_1,    KC_5,    M_TOGGLE, MO(L_FN)' "$HEADER"
 grep -Fq 'KC_TRNS, KC_TRNS, OS_TOGGLE, KC_TRNS' "$HEADER"
-grep -Eq 'KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+MS_UP,[[:space:]]+KC_LCTL' "$HEADER"
-grep -Eq 'KC_TRNS,[[:space:]]+MS_LEFT,[[:space:]]+MS_DOWN,[[:space:]]+KC_TRNS' "$HEADER"
+grep -Eq 'KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+MS_LEFT,[[:space:]]+KC_LCTL' "$HEADER"
+grep -Eq 'KC_TRNS,[[:space:]]+MS_UP,[[:space:]]+MS_DOWN,[[:space:]]+KC_TRNS' "$HEADER"
 grep -Eq 'KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+MS_RGHT,[[:space:]]+KC_TRNS' "$HEADER"
 grep -Fq '#define DYNAMIC_KEYMAP_LAYER_COUNT 5' "$CONFIG"
 grep -Fq 'MOUSEKEY_ENABLE = yes' "$RULES"
