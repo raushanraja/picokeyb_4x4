@@ -45,9 +45,9 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
 #define PICO_4X4_FN_LAYER \
     LAYOUT_ortho_4x4( \
         KC_TRNS, KC_TRNS, OS_TOGGLE, KC_TRNS, \
-        KC_TRNS, KC_TRNS, KC_TRNS,   KC_LCTL, \
-        KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, \
-        KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS  \
+        KC_TRNS, KC_TRNS, MS_UP,     KC_LCTL, \
+        KC_TRNS, MS_LEFT, MS_DOWN,   KC_TRNS, \
+        KC_TRNS, KC_TRNS, MS_RGHT,   KC_TRNS  \
     )
 
 static uint8_t pico_4x4_layer_for_profile(pico_4x4_profile_t profile, bool m2) {

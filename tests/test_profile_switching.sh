@@ -6,6 +6,7 @@ HEADER="$ROOT/firmware/keyboards/pico_4x4/profile_switching.h"
 DEFAULT_KEYMAP="$ROOT/firmware/keyboards/pico_4x4/keymaps/default/keymap.c"
 VIA_KEYMAP="$ROOT/firmware/keyboards/pico_4x4/keymaps/via/keymap.c"
 CONFIG="$ROOT/firmware/keyboards/pico_4x4/config.h"
+RULES="$ROOT/firmware/keyboards/pico_4x4/rules.mk"
 
 test -f "$HEADER"
 grep -Fq 'L_WIN_M1' "$HEADER"
@@ -31,5 +32,8 @@ done
 
 grep -Fq 'KC_1,    KC_5,    M_TOGGLE, MO(L_FN)' "$HEADER"
 grep -Fq 'KC_TRNS, KC_TRNS, OS_TOGGLE, KC_TRNS' "$HEADER"
-grep -Eq 'KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+KC_LCTL' "$HEADER"
+grep -Eq 'KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+MS_UP,[[:space:]]+KC_LCTL' "$HEADER"
+grep -Eq 'KC_TRNS,[[:space:]]+MS_LEFT,[[:space:]]+MS_DOWN,[[:space:]]+KC_TRNS' "$HEADER"
+grep -Eq 'KC_TRNS,[[:space:]]+KC_TRNS,[[:space:]]+MS_RGHT,[[:space:]]+KC_TRNS' "$HEADER"
 grep -Fq '#define DYNAMIC_KEYMAP_LAYER_COUNT 5' "$CONFIG"
+grep -Fq 'MOUSEKEY_ENABLE = yes' "$RULES"
