@@ -19,9 +19,10 @@ toggle between M1 and M2. Hold `Fn` for the momentary Fn layer, then press
 EEPROM and survives unplugging and rebooting; the M1/M2 selection resets to M1
 on boot.
 
-The four profile layers initially contain the same keymap. The Fn layer is
-transparent apart from the profile shortcut and normal Ctrl, leaving room for
-additional Fn actions later.
+The four profile layers initially contain the same keymap. Windows M1 and M2
+use independent momentary Fn layers, initially with the same Windows mouse and
+shortcut bindings, so M2 can be customized separately in VIA. Linux keeps its
+current shared Fn layer behavior.
 
 ## Matrix wiring
 

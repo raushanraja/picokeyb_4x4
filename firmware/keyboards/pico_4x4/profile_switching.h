@@ -21,6 +21,7 @@ enum pico_4x4_layers {
     L_LINUX_M2,
     L_WIN_FN,
     L_LINUX_FN,
+    L_WIN_M2_FN,
 };
 
 enum pico_4x4_custom_keycodes {
@@ -43,7 +44,8 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
         KC_4,    KC_BSPC, KC_RGHT,  KC_ENT  \
     )
 
-#define PICO_4X4_WINDOWS_PROFILE_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_FN)
+#define PICO_4X4_WINDOWS_M1_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_FN)
+#define PICO_4X4_WINDOWS_M2_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_M2_FN)
 #define PICO_4X4_LINUX_PROFILE_LAYER PICO_4X4_PROFILE_LAYER(L_LINUX_FN)
 
 #define PICO_4X4_WINDOWS_FN_LAYER \
@@ -53,6 +55,8 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
         LCA(KC_3), MS_UP,     MS_DOWN,   MS_BTN1, \
         LCA(KC_4), LCA(KC_7), MS_RGHT,   MS_BTN2  \
     )
+
+#define PICO_4X4_WINDOWS_M2_FN_LAYER PICO_4X4_WINDOWS_FN_LAYER
 
 #define PICO_4X4_LINUX_FN_LAYER \
     LAYOUT_ortho_4x4( \
@@ -73,6 +77,7 @@ static uint8_t pico_4x4_active_working_layer(void) {
     layer_state_t working_state = layer_state;
     working_state &= ~((layer_state_t)1 << L_WIN_FN);
     working_state &= ~((layer_state_t)1 << L_LINUX_FN);
+    working_state &= ~((layer_state_t)1 << L_WIN_M2_FN);
     uint8_t active_layer = get_highest_layer(working_state);
 
     switch (active_layer) {
