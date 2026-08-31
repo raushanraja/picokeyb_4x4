@@ -45,8 +45,15 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
     )
 
 #define PICO_4X4_WINDOWS_M1_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_FN)
-#define PICO_4X4_WINDOWS_M2_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_M2_FN)
 #define PICO_4X4_LINUX_PROFILE_LAYER PICO_4X4_PROFILE_LAYER(L_LINUX_FN)
+
+#define PICO_4X4_WINDOWS_M2_LAYER \
+    LAYOUT_ortho_4x4( \
+        LALT(KC_TAB), LGUI(KC_E), M_TOGGLE, MO(L_WIN_M2_FN), \
+        LGUI(KC_TAB), LGUI(KC_R), LGUI(KC_LEFT), KC_LCTL, \
+        LGUI(KC_D), LGUI(KC_UP), LGUI(KC_DOWN), KC_ESC, \
+        LALT(KC_F4), LGUI(KC_L), LGUI(KC_RGHT), KC_ENT \
+    )
 
 #define PICO_4X4_WINDOWS_FN_LAYER \
     LAYOUT_ortho_4x4( \
@@ -56,7 +63,13 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
         LCA(KC_4), LCA(KC_7), MS_RGHT,   MS_BTN2  \
     )
 
-#define PICO_4X4_WINDOWS_M2_FN_LAYER PICO_4X4_WINDOWS_FN_LAYER
+#define PICO_4X4_WINDOWS_M2_FN_LAYER \
+    LAYOUT_ortho_4x4( \
+        LCTL(KC_Z), LCTL(KC_V), OS_TOGGLE, KC_TRNS, \
+        LCTL(KC_Y), LCTL(KC_A), LCTL(KC_LEFT), KC_LCTL, \
+        LCTL(KC_X), KC_HOME, KC_END, KC_ESC, \
+        LCTL(KC_C), LCTL(KC_BSPC), LCTL(KC_RGHT), KC_ENT \
+    )
 
 #define PICO_4X4_LINUX_FN_LAYER \
     LAYOUT_ortho_4x4( \
