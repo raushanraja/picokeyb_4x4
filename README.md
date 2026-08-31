@@ -6,7 +6,7 @@ QMK firmware for a hand-wired 16-key matrix on a Raspberry Pi Pico.
 
 ```text
 1       2       3       4
-5       6       Up      Delete
+5       6       Up      Backspace
 M       Left    Down    Right
 Fn      Ctrl    Esc     Enter
 ```

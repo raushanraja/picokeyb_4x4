@@ -40,7 +40,7 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
         KC_1,    KC_5,    M_TOGGLE, MO(fn_layer), \
         KC_2,    KC_6,    KC_LEFT,  KC_LCTL, \
         KC_3,    KC_UP,   KC_DOWN,  KC_ESC, \
-        KC_4,    KC_DEL,  KC_RGHT,  KC_ENT  \
+        KC_4,    KC_BSPC, KC_RGHT,  KC_ENT  \
     )
 
 #define PICO_4X4_WINDOWS_PROFILE_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_FN)
@@ -50,8 +50,8 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
     LAYOUT_ortho_4x4( \
         LCA(KC_1), LCA(KC_5), OS_TOGGLE, KC_TRNS, \
         LCA(KC_2), LCA(KC_6), MS_LEFT,   KC_LCTL, \
-        LCA(KC_3), MS_UP,     MS_DOWN,   KC_TRNS, \
-        LCA(KC_4), LCA(KC_7), MS_RGHT,   KC_TRNS  \
+        LCA(KC_3), MS_UP,     MS_DOWN,   MS_BTN1, \
+        LCA(KC_4), LCA(KC_7), MS_RGHT,   MS_BTN2  \
     )
 
 #define PICO_4X4_LINUX_FN_LAYER \
