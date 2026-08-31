@@ -19,10 +19,60 @@ toggle between M1 and M2. Hold `Fn` for the momentary Fn layer, then press
 EEPROM and survives unplugging and rebooting; the M1/M2 selection resets to M1
 on boot.
 
-The four profile layers initially contain the same keymap. Windows M1 and M2
-use independent momentary Fn layers, initially with the same Windows mouse and
-shortcut bindings, so M2 can be customized separately in VIA. Linux keeps its
-current shared Fn layer behavior.
+The four profile layers are selected as follows:
+
+| Layer | Activate with | Purpose |
+| --- | --- | --- |
+| Windows M1 | Default | Normal Windows keypad |
+| Windows M2 | Tap `M` | App and window controls |
+| Windows M1 + Fn | Hold `Fn` on M1 | Mouse and `Ctrl+Alt` shortcuts |
+| Windows M2 + Fn | Hold `Fn` on M2 | Text-editing shortcuts |
+| Linux M1/M2 | Switch OS, then tap `M` | Linux base layers |
+| Linux + Fn | Hold `Fn` on Linux | Mouse movement and navigation |
+
+`M` toggles M1 ↔ M2 within the active OS profile. The OS selection is stored
+in EEPROM and survives unplugging and rebooting; the M1/M2 selection resets to
+M1 on boot. Press `Fn + Ctrl + M` to switch between Windows and Linux while
+preserving the current M1/M2 state.
+
+#### Windows M2 — app and window controls
+
+| 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- |
+| `Alt+Tab` | `Win+Tab` | `Win+D` | `Alt+F4` |
+| `Win+E` | `Win+R` | `Win+Up` | `Win+L` |
+| `M` toggle | `Win+Left` | `Win+Down` | `Win+Right` |
+| `Fn` | `Ctrl` | `Esc` | `Enter` |
+
+#### Windows M2 + Fn — text editing
+
+| 1 | 2 | 3 | 4 |
+| --- | --- | --- | --- |
+| `Ctrl+Z` | `Ctrl+Y` | `Ctrl+X` | `Ctrl+C` |
+| `Ctrl+V` | `Ctrl+A` | `Home` | `Ctrl+Backspace` |
+| OS switch | `Ctrl+Left` | `End` | `Ctrl+Right` |
+| Transparent | `Ctrl` | `Esc` | `Enter` |
+
+#### Windows M1 + Fn
+
+The existing M1 Fn layer provides `Ctrl+Alt+1` through `Ctrl+Alt+7`, mouse
+movement on the arrow keys, and left/right mouse click on `Esc`/`Enter`.
+
+#### VIA layer order
+
+In VIA, the seven editable layers are ordered as:
+
+| VIA layer | Firmware layer | Description |
+| ---: | --- | --- |
+| 0 | `L_WIN_M1` | Windows M1 |
+| 1 | `L_WIN_M2` | Windows M2 |
+| 2 | `L_LINUX_M1` | Linux M1 |
+| 3 | `L_LINUX_M2` | Linux M2 |
+| 4 | `L_WIN_FN` | Windows M1 + Fn |
+| 5 | `L_LINUX_FN` | Linux + Fn |
+| 6 | `L_WIN_M2_FN` | Windows M2 + Fn |
+
+The compiled defaults can be customized independently in VIA.
 
 ## Matrix wiring
 
