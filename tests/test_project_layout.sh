@@ -15,7 +15,7 @@ grep -Fq '#define PICO_4X4_LOW_PINS_ARE_ROWS 0' "$CONFIG"
 grep -Fq '#define DIODE_DIRECTION COL2ROW' "$CONFIG"
 grep -Fq 'GP1, GP2, GP3, GP4' "$CONFIG"
 grep -Fq 'GP9, GP10, GP11, GP12' "$CONFIG"
-grep -Eq 'KC_1,[[:space:]]+KC_5,[[:space:]]+M_TOGGLE,[[:space:]]+MO\(L_FN\)' "$PROFILE_HEADER"
+grep -Fq '#define PICO_4X4_PROFILE_LAYER(fn_layer)' "$PROFILE_HEADER"
 grep -Eq 'KC_2,[[:space:]]+KC_6,[[:space:]]+KC_LEFT,[[:space:]]+KC_LCTL' "$PROFILE_HEADER"
 grep -Eq 'KC_3,[[:space:]]+KC_UP,[[:space:]]+KC_DOWN,[[:space:]]+KC_ESC' "$PROFILE_HEADER"
 grep -Eq 'KC_4,[[:space:]]+KC_DEL,[[:space:]]+KC_RGHT,[[:space:]]+KC_ENT' "$PROFILE_HEADER"
@@ -29,7 +29,7 @@ if grep -Fq '"lighting"' "$VIA_DEFINITION"; then
     exit 1
 fi
 grep -Fq 'VIA_ENABLE = yes' "$VIA_RULES"
-grep -Eq 'KC_1,[[:space:]]+KC_5,[[:space:]]+M_TOGGLE,[[:space:]]+MO\(L_FN\)' "$PROFILE_HEADER"
+grep -Fq '#define PICO_4X4_PROFILE_LAYER(fn_layer)' "$PROFILE_HEADER"
 grep -Eq 'KC_2,[[:space:]]+KC_6,[[:space:]]+KC_LEFT,[[:space:]]+KC_LCTL' "$PROFILE_HEADER"
 grep -Eq 'KC_3,[[:space:]]+KC_UP,[[:space:]]+KC_DOWN,[[:space:]]+KC_ESC' "$PROFILE_HEADER"
 grep -Eq 'KC_4,[[:space:]]+KC_DEL,[[:space:]]+KC_RGHT,[[:space:]]+KC_ENT' "$PROFILE_HEADER"

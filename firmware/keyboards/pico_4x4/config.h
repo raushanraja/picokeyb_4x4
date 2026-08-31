@@ -31,8 +31,8 @@ GNU General Public License for more details.
 #define MATRIX_ROWS 4
 #define MATRIX_COLS 4
 
-// VIA exposes the four profile layers plus the momentary Fn layer.
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+// VIA exposes four profile layers plus separate Windows and Linux Fn layers.
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
 
 #define USB_POLLING_INTERVAL_MS 1
 

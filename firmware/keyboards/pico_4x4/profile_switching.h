@@ -19,7 +19,8 @@ enum pico_4x4_layers {
     L_WIN_M2,
     L_LINUX_M1,
     L_LINUX_M2,
-    L_FN,
+    L_WIN_FN,
+    L_LINUX_FN,
 };
 
 enum pico_4x4_custom_keycodes {
@@ -34,15 +35,26 @@ typedef enum {
 
 static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
 
-#define PICO_4X4_PROFILE_LAYER \
+#define PICO_4X4_PROFILE_LAYER(fn_layer) \
     LAYOUT_ortho_4x4( \
-        KC_1,    KC_5,    M_TOGGLE, MO(L_FN), \
+        KC_1,    KC_5,    M_TOGGLE, MO(fn_layer), \
         KC_2,    KC_6,    KC_LEFT,  KC_LCTL, \
         KC_3,    KC_UP,   KC_DOWN,  KC_ESC, \
         KC_4,    KC_DEL,  KC_RGHT,  KC_ENT  \
     )
 
-#define PICO_4X4_FN_LAYER \
+#define PICO_4X4_WINDOWS_PROFILE_LAYER PICO_4X4_PROFILE_LAYER(L_WIN_FN)
+#define PICO_4X4_LINUX_PROFILE_LAYER PICO_4X4_PROFILE_LAYER(L_LINUX_FN)
+
+#define PICO_4X4_WINDOWS_FN_LAYER \
+    LAYOUT_ortho_4x4( \
+        LCA(KC_1), LCA(KC_5), OS_TOGGLE, KC_TRNS, \
+        LCA(KC_2), LCA(KC_6), MS_LEFT,   KC_LCTL, \
+        LCA(KC_3), MS_UP,     MS_DOWN,   KC_TRNS, \
+        LCA(KC_4), LCA(KC_7), MS_RGHT,   KC_TRNS  \
+    )
+
+#define PICO_4X4_LINUX_FN_LAYER \
     LAYOUT_ortho_4x4( \
         KC_TRNS, KC_TRNS, OS_TOGGLE, KC_TRNS, \
         KC_TRNS, KC_TRNS, MS_LEFT,   KC_LCTL, \
@@ -58,7 +70,9 @@ static uint8_t pico_4x4_layer_for_profile(pico_4x4_profile_t profile, bool m2) {
 }
 
 static uint8_t pico_4x4_active_working_layer(void) {
-    layer_state_t working_state = layer_state & ~((layer_state_t)1 << L_FN);
+    layer_state_t working_state = layer_state;
+    working_state &= ~((layer_state_t)1 << L_WIN_FN);
+    working_state &= ~((layer_state_t)1 << L_LINUX_FN);
     uint8_t active_layer = get_highest_layer(working_state);
 
     switch (active_layer) {
