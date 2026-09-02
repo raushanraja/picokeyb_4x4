@@ -27,6 +27,7 @@ enum pico_4x4_layers {
 enum pico_4x4_custom_keycodes {
     M_TOGGLE = SAFE_RANGE,
     OS_TOGGLE,
+    ALT_TAB_MODE,
 };
 
 typedef enum {
@@ -35,6 +36,7 @@ typedef enum {
 } pico_4x4_profile_t;
 
 static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
+static bool pico_4x4_alt_tab_active = false;
 
 #define PICO_4X4_PROFILE_LAYER(fn_layer) \
     LAYOUT_ortho_4x4( \
@@ -57,7 +59,7 @@ static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
 
 #define PICO_4X4_WINDOWS_FN_LAYER \
     LAYOUT_ortho_4x4( \
-        KC_1, KC_5,    OS_TOGGLE, KC_TRNS, \
+        ALT_TAB_MODE, KC_5, OS_TOGGLE, KC_TRNS, \
         KC_2, KC_6,    MS_LEFT,   KC_LCTL, \
         KC_3, MS_UP,   MS_DOWN,   MS_BTN1, \
         KC_4, KC_BSPC, MS_RGHT,   MS_BTN2  \
@@ -148,6 +150,11 @@ void keyboard_post_init_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (keycode != ALT_TAB_MODE && pico_4x4_alt_tab_active) {
+        unregister_code(KC_LALT);
+        pico_4x4_alt_tab_active = false;
+    }
+
     switch (keycode) {
         case M_TOGGLE:
             if (record->event.pressed) {
@@ -157,6 +164,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case OS_TOGGLE:
             if (record->event.pressed && (get_mods() & MOD_MASK_CTRL)) {
                 pico_4x4_toggle_os_profile();
+            }
+            return false;
+        case ALT_TAB_MODE:
+            if (record->event.pressed) {
+                if (!pico_4x4_alt_tab_active) {
+                    register_code(KC_LALT);
+                    pico_4x4_alt_tab_active = true;
+                }
+                tap_code(KC_TAB);
             }
             return false;
         default:

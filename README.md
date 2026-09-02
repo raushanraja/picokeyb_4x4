@@ -55,9 +55,12 @@ preserving the current M1/M2 state.
 
 #### Windows M1 + Fn
 
-The M1 Fn layer provides normal `1` through `6` keys, Backspace on physical
-key 8, mouse movement on the arrow keys, and left/right mouse click on
-`Esc`/`Enter`. The base profile layer provides `Ctrl+Alt+1` through
+The M1 Fn layer uses key 1 as a persistent Alt-Tab mode: the first press holds
+Alt and sends Tab, and later presses send Tab while Alt remains held. Pressing
+another key or releasing Fn exits the mode. The other number positions provide
+normal `2` through `6` keys, with Backspace on physical key 8. It also provides
+mouse movement on the arrow keys, the OS switch on `M`, and left/right mouse
+click on `Esc`/`Enter`. The base profile layer provides `Ctrl+Alt+1` through
 `Ctrl+Alt+7` in those number positions.
 
 #### VIA layer order
