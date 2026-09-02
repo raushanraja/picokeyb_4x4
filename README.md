@@ -23,9 +23,9 @@ The four profile layers are selected as follows:
 
 | Layer | Activate with | Purpose |
 | --- | --- | --- |
-| Windows M1 | Default | Normal Windows keypad |
+| Windows M1 | Default | `Ctrl+Alt+1` through `Ctrl+Alt+7` |
 | Windows M2 | Tap `M` | App and window controls |
-| Windows M1 + Fn | Hold `Fn` on M1 | Mouse and `Ctrl+Alt` shortcuts |
+| Windows M1 + Fn | Hold `Fn` on M1 | Number keys, mouse, and navigation |
 | Windows M2 + Fn | Hold `Fn` on M2 | Text-editing shortcuts |
 | Linux M1/M2 | Switch OS, then tap `M` | Linux base layers |
 | Linux + Fn | Hold `Fn` on Linux | Mouse movement and navigation |
@@ -55,8 +55,10 @@ preserving the current M1/M2 state.
 
 #### Windows M1 + Fn
 
-The existing M1 Fn layer provides `Ctrl+Alt+1` through `Ctrl+Alt+7`, mouse
-movement on the arrow keys, and left/right mouse click on `Esc`/`Enter`.
+The M1 Fn layer provides normal `1` through `6` keys, Backspace on physical
+key 8, mouse movement on the arrow keys, and left/right mouse click on
+`Esc`/`Enter`. The base profile layer provides `Ctrl+Alt+1` through
+`Ctrl+Alt+7` in those number positions.
 
 #### VIA layer order
 
