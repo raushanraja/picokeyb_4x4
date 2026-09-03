@@ -58,8 +58,12 @@ preserving the current M1/M2 state.
 The M1 Fn layer uses key 1 as a persistent Alt-Tab mode: the first press holds
 Alt and sends Tab, and later presses send Tab while Alt remains held. Pressing
 another key or releasing Fn exits the mode. The other number positions provide
-`Win+D` on physical key 2, `Win+F` on physical key 3, normal `4` through `6`
-keys, and Backspace on physical key 8. It also provides
+`Win+D` on physical key 2, `Win+F` on physical key 3. Fn + physical key 4
+toggles a mode that arms `Ctrl+Alt+Shift` on either Windows Fn layer; while
+active, clicking a number sends it with those modifiers, then releases them and
+turns the mode off. Press Fn + 4 again to cancel the mode before clicking a
+number.
+Backspace remains on physical key 8. It also provides
 mouse movement on the arrow keys, the OS switch on `M`, and left/right mouse
 click on `Esc`/`Enter`. The base profile layer provides `Ctrl+Alt+1` through
 `Ctrl+Alt+7` in those number positions.

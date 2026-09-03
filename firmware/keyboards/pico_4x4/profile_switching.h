@@ -28,6 +28,7 @@ enum pico_4x4_custom_keycodes {
     M_TOGGLE = SAFE_RANGE,
     OS_TOGGLE,
     ALT_TAB_MODE,
+    CTRL_ALT_SHIFT_MODE,
 };
 
 typedef enum {
@@ -37,6 +38,22 @@ typedef enum {
 
 static pico_4x4_profile_t pico_4x4_profile = PICO_PROFILE_WINDOWS;
 static bool pico_4x4_alt_tab_active = false;
+static bool pico_4x4_ctrl_alt_shift_active = false;
+
+static void pico_4x4_release_ctrl_alt_shift(void) {
+    unregister_code(KC_LSFT);
+    unregister_code(KC_LALT);
+    unregister_code(KC_LCTL);
+    pico_4x4_ctrl_alt_shift_active = false;
+}
+
+static void pico_4x4_tap_ctrl_alt_shift(uint16_t keycode) {
+    register_code(KC_LCTL);
+    register_code(KC_LALT);
+    register_code(KC_LSFT);
+    tap_code(keycode);
+    pico_4x4_release_ctrl_alt_shift();
+}
 
 #define PICO_4X4_PROFILE_LAYER(fn_layer) \
     LAYOUT_ortho_4x4( \
@@ -62,7 +79,7 @@ static bool pico_4x4_alt_tab_active = false;
         ALT_TAB_MODE, KC_5,        OS_TOGGLE, KC_TRNS, \
         LGUI(KC_D),   KC_6,        MS_LEFT,   KC_LCTL, \
         LGUI(KC_F),   MS_UP,       MS_DOWN,   MS_BTN1, \
-        KC_4,         KC_BSPC,    MS_RGHT,   MS_BTN2  \
+        CTRL_ALT_SHIFT_MODE, KC_BSPC, MS_RGHT, MS_BTN2 \
     )
 
 #define PICO_4X4_WINDOWS_M2_FN_LAYER \
@@ -70,7 +87,7 @@ static bool pico_4x4_alt_tab_active = false;
         LCTL(KC_Z), LCTL(KC_V), OS_TOGGLE, KC_TRNS, \
         LCTL(KC_Y), LCTL(KC_A), LCTL(KC_LEFT), KC_LCTL, \
         LCTL(KC_X), KC_HOME, KC_END, KC_ESC, \
-        LCTL(KC_C), LCTL(KC_BSPC), LCTL(KC_RGHT), KC_ENT \
+        CTRL_ALT_SHIFT_MODE, LCTL(KC_BSPC), LCTL(KC_RGHT), KC_ENT \
     )
 
 #define PICO_4X4_LINUX_FN_LAYER \
@@ -155,6 +172,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         pico_4x4_alt_tab_active = false;
     }
 
+    if (pico_4x4_ctrl_alt_shift_active && keycode != CTRL_ALT_SHIFT_MODE) {
+        uint16_t number = KC_NO;
+        if (keycode == ALT_TAB_MODE || keycode == LCA(KC_1) || keycode == LCTL(KC_Z)) {
+            number = KC_1;
+        } else if (keycode == LGUI(KC_D) || keycode == LCA(KC_2) || keycode == LCTL(KC_Y)) {
+            number = KC_2;
+        } else if (keycode == LGUI(KC_F) || keycode == LCA(KC_3) || keycode == LCTL(KC_X)) {
+            number = KC_3;
+        } else if (keycode == LCA(KC_4)) {
+            number = KC_4;
+        } else if (keycode == KC_5 || keycode == LCA(KC_5) || keycode == LCTL(KC_V)) {
+            number = KC_5;
+        } else if (keycode == KC_6 || keycode == LCA(KC_6) || keycode == LCTL(KC_A)) {
+            number = KC_6;
+        }
+
+        if (number != KC_NO) {
+            if (record->event.pressed) {
+                pico_4x4_tap_ctrl_alt_shift(number);
+            }
+            return false;
+        }
+    }
+
     switch (keycode) {
         case M_TOGGLE:
             if (record->event.pressed) {
@@ -173,6 +214,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     pico_4x4_alt_tab_active = true;
                 }
                 tap_code(KC_TAB);
+            }
+            return false;
+        case CTRL_ALT_SHIFT_MODE:
+            if (record->event.pressed) {
+                if (pico_4x4_ctrl_alt_shift_active) {
+                    pico_4x4_release_ctrl_alt_shift();
+                } else {
+                    pico_4x4_ctrl_alt_shift_active = true;
+                }
             }
             return false;
         default:
